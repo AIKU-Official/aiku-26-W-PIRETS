@@ -1,0 +1,18 @@
+# conf/mine_config.yaml
+model:
+  name: 'our_retriever_conv_meanmax'
+  backbone: 'vinai/xphonebert-base'
+  use_pooler: false
+  temperature: 0.05
+  model_checkpoint: 'outputs/1. train/8. bi-encoder-conv-meanmax/checkpoints/best_model.pt'
+                  # 'outputs/1. train/8. bi-encoder-conv-meanmax/checkpoints/best_model.pt'
+data:
+  train_tsv: 'data/train_dataset/train.tsv'
+  train_jsonl: 'data/train_dataset/train_g2p.jsonl'
+  val_tsv: 'data/train_dataset/val.tsv'
+  val_jsonl: 'data/train_dataset/val_g2p.jsonl'
+  
+mining:
+  train_num_negatives: 15
+  val_num_negatives: 15
+  top_k: 100

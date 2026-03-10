@@ -1,0 +1,10 @@
+name: "hybrid_with_reranker"
+
+backbone: "vinai/xphonebert-base"
+max_length: 384
+
+dropout: 0.1
+use_pooler: false
+temperature: 0.05
+alpha: 0.5
+projection_dim: null

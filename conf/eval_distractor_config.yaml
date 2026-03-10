@@ -1,0 +1,18 @@
+defaults:
+  - data: evaluate
+  - model: bm25
+
+mode: eval_distractor
+seed: 42
+
+eval:
+  k_values: [1, 5, 10, 50, 100]
+
+distractor:
+  path: data/eval_dataset/distractor_corpus_cleaned.tsv
+  percentages: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+  save_top_k_predictions: 100
+
+hydra:
+  run:
+    dir: outputs/${model.name}_${mode}_${now:%y%m%d}_${now:%H%M%S}

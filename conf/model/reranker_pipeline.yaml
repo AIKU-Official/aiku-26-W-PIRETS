@@ -1,0 +1,16 @@
+# ==========================================
+# 발음 기반 Reranker + Hybrid Retriever 설정
+# ==========================================
+
+name: "reranker_pipeline"
+  
+# 학습한 발음 기반 리랭커의 체크포인트 절대/상대 경로를 입력
+reranker_path: "checkpoints/0. old/1. train/10. reranker/best_model.pt"
+reranker_max_length: 384
+
+# 기존 단일 모델 실험 때 쓰던 YAML를 사용
+base_retriever_cfg:
+  name: "g2p_bm25_ngram"
+  params:
+    k1: 1.5
+    b: 0.75

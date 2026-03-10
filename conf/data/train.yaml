@@ -1,0 +1,16 @@
+# 데이터셋 기본 경로
+base_dir: "${hydra:runtime.cwd}/data/train_dataset"
+
+# 파일명 정의
+train_file: "train.tsv"         # 원본 텍스트 (Query 생성용)
+val_file: "val.tsv"             # 검증용 텍스트
+g2p_file: "train_g2p.jsonl"     #  [NEW] 미리 변환된 Passage 파일
+val_g2p_file: "val_g2p.jsonl"
+
+# 데이터 처리 설정
+max_length: 64      # 토큰 최대 길이 (가사 한 줄이면 64 충분)
+shuffle: true       # 학습 시 데이터 섞기
+
+# ict_split 관련 (혹시 나중에 필요할 수도 있어서 남겨둠, 현재 Collator는 내부 로직 사용)
+min_words: 4
+max_words: 12

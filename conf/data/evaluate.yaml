@@ -1,0 +1,16 @@
+# conf/data/evaluate.yaml
+
+name: "eval_dataset"
+
+# [중요] 스크립트들이 이 변수('base_dir')를 찾습니다!
+base_dir: "data/eval_dataset"
+
+# 세부 경로들
+lyrics_dir: "${data.base_dir}/lyrics"
+
+# 개별 파일(songs0.tsv)이 필요하면 파이썬 코드에서 처리하거나,
+# 실행할 때 'python main.py data.songs=data/eval_dataset/songs0.tsv'로 덮어씌웁니다.
+songs: "${data.base_dir}/songs.tsv"
+queries: "${data.base_dir}/queries.tsv"
+corpus: "${data.base_dir}/corpus.tsv"
+qrels: "${data.base_dir}/qrels.tsv"

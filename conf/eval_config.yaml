@@ -1,0 +1,28 @@
+defaults:
+  - data: evaluate
+  - model: reranker_pipeline
+  - _self_
+
+user_id: null
+top_k: 100
+save_detail: true
+
+mode: eval
+
+checkpoint_path: "outputs/0. old/1. train/8. bi-encoder-conv-meanmax/checkpoints/best_model.pt"
+
+# Pipeline mode: set both to load retriever + reranker separately
+retriever_checkpoint: "outputs/0. old/1. train/8. bi-encoder-conv-meanmax/checkpoints/best_model.pt"
+reranker_checkpoint: "outputs/0. old/1. train/10. reranker/checkpoints/best_model.pt"
+
+embed_cache_path: "data/eval_dataset/cache/conv_meanmax_cache.pt"
+
+# RRF ensemble source paths (placeholder)
+phonetic_path: "outputs/4-2. our pipeline/rankings_reranker_pipeline_scale_0.json"
+semantic_path: "outputs/4-1. e5+bge distractor 0/rankings_semantic_pipeline_scale_0.json"
+
+distractor_sizes: [0, 43234]
+
+hydra:
+  run:
+    dir: outputs/${model.name}_${mode}_${now:%y%m%d_%H%M%S}

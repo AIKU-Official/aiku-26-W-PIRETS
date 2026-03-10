@@ -1,0 +1,4 @@
+# conf/model/semantic_pipeline.yaml
+name: "semantic_pipeline"
+e5_model_name: "intfloat/multilingual-e5-large"
+bge_reranker_name: "BAAI/bge-reranker-v2-m3" # 전용 Cross-Encoder 모델

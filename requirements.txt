@@ -1,0 +1,12 @@
+torch>=1.13.0
+numpy
+tqdm
+transformers>=4.30.0
+hydra-core>=1.3.0
+omegaconf
+pandas
+jamo
+g2pk
+g2p_en
+rank_bm25
+sentence-transformers

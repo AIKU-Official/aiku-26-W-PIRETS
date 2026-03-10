@@ -1,0 +1,4 @@
+name: "g2p_bm25_ngram"
+params:
+  k1: 1.5
+  b: 0.75

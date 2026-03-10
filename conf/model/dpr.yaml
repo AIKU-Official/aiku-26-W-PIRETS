@@ -1,0 +1,4 @@
+name: "dpr"
+params:
+  model_name_or_path: "facebook/contriever" # 혹은 "klue/roberta-base"
+  device: "cpu" # 혹은 "cpu"

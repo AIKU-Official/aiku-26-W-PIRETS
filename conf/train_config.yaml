@@ -1,0 +1,56 @@
+defaults:
+  - data: train          # conf/data/train.yaml
+  - model: our_retriever_meanmax
+  - _self_               # 메인 설정 오버라이드 허용
+
+#  실험 이름
+exp_name: "xphonebert-retrieval-meanmax"
+seed: 42
+debug: false
+mode: "train"
+
+#  학습 하이퍼파라미터
+train:
+  epochs: 10
+  batch_size: 64         # 메모리 부족 시 16으로 조절
+  learning_rate: 5e-5
+  weight_decay: 0.01
+  warmup_ratio: 0.1
+
+
+  # 로깅 및 저장 주기
+  eval_steps: 100000      # 아예 큰 숫자로 지정하면 에폭 끝에서만 val 수행
+  save_steps: 2000
+  logging_steps: 200      # n스텝마다 로그 출력
+  
+  # 시스템 설정
+  fp16: true             # Mixed Precision
+  num_workers: 8         
+  
+  # 출력 경로
+  output_dir: "${hydra:runtime.output_dir}/checkpoints"
+
+#  Hydra 로그 설정
+hydra:
+  run:
+    # 1. 실행 폴더 생성 경로
+    dir: outputs/${model.name}_${mode}_${now:%y%m%d_%H%M%S}
+  
+  job_logging:
+    handlers:
+      file:
+        class: logging.FileHandler
+        # 2. 로그 파일명
+        filename: "${hydra:runtime.output_dir}/train.log"
+        mode: w
+        formatter: simple
+      console:
+        class: logging.StreamHandler
+        stream: ext://sys.stdout
+        formatter: simple
+
+    root:
+      level: INFO
+      handlers: [console, file]
+
+    disable_existing_loggers: false

@@ -1,0 +1,35 @@
+# 1. 파이썬 자동 생성 파일 (캐시)
+__pycache__/
+*.pyc
+
+# 2. Hydra 로그 폴더
+outputs/
+multirun/
+
+# 3. 데이터셋 파일
+data/
+melon/
+*.csv
+*.tsv
+*.txt
+*.zip
+
+# 4. 대용량 바이너리
+*.mmap
+
+# 5. VS Code 설정
+.vscode/
+
+# 6. OS 생성 파일
+.DS_Store
+Thumbs.db
+
+# 7. conf/data 는 예외로 포함
+!conf/data/
+!conf/data/**
+
+# 8. requirements.txt 는 예외로 포함
+!requirements.txt
+
+# 8. 로컬 전용 문서
+INTEGRATION_LOG.md

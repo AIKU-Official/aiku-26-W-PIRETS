@@ -1,0 +1,23 @@
+# conf/model/conv_meanmax_with_reranker.yaml
+
+name: "conv_meanmax_with_reranker"
+
+# ==========================================
+# [공통 (Shared)] Retriever와 Reranker 공통 설정
+# ==========================================
+# 팩토리 패턴 구조상 두 모델이 동일한 Backbone을 공유합니다.
+backbone: "vinai/xphonebert-base"
+
+# ==========================================
+# [Pipeline] Reranker 및 파이프라인 전용 설정
+# ==========================================
+# Cross-Encoder는 <s> Query </s></s> Passage </s> 형태로 두 문장이 
+max_length: 384
+
+# ==========================================
+# [Retriever] 1차 검색기(ConvMeanMax) 전용 설정
+# ==========================================
+dropout: 0.1
+use_pooler: false       # True: [CLS] 통과 / False: Mean+Max Pooling 앙상블 (권장)
+temperature: 0.05       # Contrastive Loss 온도 (평가 시에는 동작에 영향 없음)
+projection_dim: null    # Backbone의 기본 차원(768)을 그대로 유지
