@@ -1,11 +1,23 @@
-# 프로젝트명
+# PIRETS: Phonetic Information Retrieval System
 
-📢 20##년 1/여름/2/겨울학기 [AIKU](https://github.com/AIKU-Official) 활동으로 진행한 프로젝트입니다
-🎉 20##년 1/여름/2/겨울학기 AIKU Conference 열심히상 수상!
+📢 2026년 겨울학기 [AIKU](https://github.com/AIKU-Official) 활동으로 진행한 프로젝트입니다
 
 ## 소개
 
-(프로젝트를 소개해주세요)
+> **PIRETS**: **P**honetic **I**nformation **Ret**rieval **S**ystem
+
+PIRETS는 텍스트의 발음 차원 노이즈를 극복하는 2-Stage 발음 기반 정보 검색 시스템입니다. 
+
+텍스트에 g2p를 적용하여 발음 기호로 변환한 뒤, Lexical search와 XPhoneBERT 기반 Dense retrieval을 앙상블하고, Cross-encoder로 정밀하게 Reranking하여 높은 검색 정확도를 달성합니다.
+
+PIRETS는 범용적인 발음 기반 정보 검색(Phonetic Information Retrieval)을 위한 프레임워크로 설계되었으며, 본 프로젝트에서는 제안된 방법론의 실효성을 입증하기 위한 Testbed로서 '발음 노이즈가 포함된 가사 쿼리에 대한 원곡 검색 task'에 집중하여 학습과 평가를 수행합니다.
+
+PIRETS는 다음과 같은 목표를 달성하고자 합니다.
+
+- 발음 차원 노이즈가 포함된 쿼리 환경에서도 의도한 문서를 정확하게 탐색할 수 있는 검색 모델 개발
+- 후보 passage의 규모가 증가해도 성능이 크게 감소하지 않는 Robust한 검색 모델 개발
+
+PIRETS에 대한 더 자세한 설명은 [AIKU 노션](https://www.notion.so/aiku/PIRETS-31da7930e09c80dcba20d8acb16dd63e?source=copy_link)에서 확인하실 수 있습니다.
 
 ## 방법론
 
