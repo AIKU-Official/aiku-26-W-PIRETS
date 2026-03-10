@@ -29,11 +29,19 @@ PIRETS는 다음과 같은 목표를 달성하고자 합니다.
     
 - [**AI Hub:**](https://aihub.or.kr/aihubdata/data/view.do?srchOptnCnd=OPTNCND001&currMenu=115&topMenu=100&searchKeyword=%EB%8C%80%ED%99%94%EC%B2%B4&aihubDataSe=data&dataSetSn=543) 한국어 대화체 데이터 구축을 위해 과학기술정보통신부와 한국지능정보사회진흥원(NIA)이 주관하여 구축한 'AI Hub 주제별 텍스트 일상 대화 데이터'를 활용하였습니다.
 
-PIRETS에 대한 더 자세한 설명은 [AIKU 노션](https://www.notion.so/aiku/PIRETS-31da7930e09c80dcba20d8acb16dd63e?source=copy_link)에서 확인하실 수 있습니다.
-
 ## 방법론
 
-(문제를 정의하고 이를 해결한 방법을 가독성 있게 설명해주세요)
+<img width="600" height="600" alt="image" src="https://github.com/user-attachments/assets/1ed0def9-2757-4fc0-ae65-4ea6a6b7c599" />
+
+**PIRETS**는 발음 노이즈에 대응하기 위해 텍스트를 음소(Phoneme) 단위로 변환하고, 이를 기반으로 2-Stage Retrieval 파이프라인을 통해 정밀한 검색을 수행하는 구조입니다. 
+
+전체 모델은 다음과 같은 세 가지 단계로 구성됩니다.
+
+1. **G2P**: 텍스트를 국제음성기호(IPA) 기반 음소로 변환하는 단계
+2. **Retrieval**: Phonemized Query와 Phonemized Passage를 입력으로 받아 1차 retrieval을 수행하여 Top-K Candidates를 추출하는 단계
+3. **Reranking**: 1차 retrieval에서 추출된 Top-K Candidates에 대해서 쿼리와의 유사도를 다시 계산하고 이를 바탕으로 재정렬을 수행하는 단계
+
+**PIRETS**에 대한 더 자세한 설명은 [AIKU 노션](https://www.notion.so/aiku/PIRETS-31da7930e09c80dcba20d8acb16dd63e?source=copy_link)에서 확인하실 수 있습니다.
 
 ## 환경 설정
 
@@ -97,7 +105,35 @@ python train_reranker.py
 
 ## 예시 결과
 
-(사용 방법을 실행했을 때 나타나는 결과나 시각화 이미지를 보여주세요)
+### 1. Dense retriever 모델 선정
+
+<img width="1524" height="295" alt="image" src="https://github.com/user-attachments/assets/5043ea9e-0aa8-4016-abd8-8a44fd2825c6" />
+
+<img width="1524" height="295" alt="image" src="https://github.com/user-attachments/assets/c0494b66-6845-40ad-9b49-9f3da5618a71" />
+
+### 2. Retriever 성능 비교
+
+<img width="1412" height="406" alt="image" src="https://github.com/user-attachments/assets/4983e597-aa54-489e-8ba1-ed7a038f2219" />
+
+<img width="1412" height="406" alt="image" src="https://github.com/user-attachments/assets/a80d3fbb-3a00-4be3-be54-d78ec1284304" />
+
+### 3. Retriever + Reranker 성능 비교
+
+<img width="379" height="109" alt="image" src="https://github.com/user-attachments/assets/00bceb3b-de0d-4b39-b1fe-ab523234ac43" />
+
+<img width="378" height="109" alt="image" src="https://github.com/user-attachments/assets/fc42f652-5e36-468e-870e-d96e7f600a27" />
+
+- **PIRETS는 발음 노이즈 포함 가사 데이터셋에서 Recall@1 = 0.91 의 성능을 달성.** (Distractor = 43234 기준)
+
+### 4. 복합 오류 도메인 평가
+
+<img width="525" height="108" alt="image" src="https://github.com/user-attachments/assets/37fa1f20-3d4a-41f8-b7cb-51c07384113d" />
+
+<img width="525" height="108" alt="image" src="https://github.com/user-attachments/assets/e3a17d5b-be65-455e-82ef-776fb2dc0d0a" />
+
+- Phonetic noise와 Semantic noise가 1:1 비율로 혼합된 데이터셋에서의 추가적인 실험
+- 후보 passage의 개수가 적을 때는 기존의 Semantic 모델(E5 + BGE reranker)이 좋은 성능을 보였지만, distractor가 늘어남에 따라 Phonetic 모델(PIRETS)이 안정적인 성능을 보였음.
+- Semantic 모델과 PIRETS를 Hybrid할 경우 Recall@1은 감소하지만 Recall@5, MRR은 증가하는 현상을 보임.
 
 ## 팀원
 
