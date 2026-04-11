@@ -135,6 +135,16 @@ python train_reranker.py
 - 후보 passage의 개수가 적을 때는 기존의 Semantic 모델(E5 + BGE reranker)이 좋은 성능을 보였지만, distractor가 늘어남에 따라 Phonetic 모델(PIRETS)이 안정적인 성능을 보였음.
 - Semantic 모델과 PIRETS를 Hybrid할 경우 Recall@1은 감소하지만 Recall@5, MRR은 증가하는 현상을 보임.
 
+### 5. Case Study
+<img width="1062" height="617" alt="image" src="https://github.com/user-attachments/assets/00dfc45d-b1c2-4ff9-8c0b-8eea774885f6" />
+
+<img width="1714" height="493" alt="image" src="https://github.com/user-attachments/assets/51acf9aa-0656-46a1-a462-00ff06872869" />
+
+<img width="1458" height="708" alt="image" src="https://github.com/user-attachments/assets/bc915aa8-58b6-4fed-910b-c021e4545d93" />
+
+<img width="1707" height="720" alt="image" src="https://github.com/user-attachments/assets/ecad67f2-8159-456d-aead-d7003844b238" />
+
+
 ## 팀원
 
 - [이성은](https://github.com/retnivv): 모델 구현, 학습 및 평가 수행
